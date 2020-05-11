@@ -1,11 +1,17 @@
 package entities;
 
-public class Movie implements Comparable<Movie> {
+import java.util.Comparator;
+
+public class Serie implements Comparator<Serie> {
+
     private String name;
     private int year;
     private double rating;
 
-    public Movie(String name, int year, double rating) {
+    public Serie() {
+    }
+
+    public Serie(String name, int year, double rating) {
         this.setName(name);
         this.setYear(year);
         this.setRating(rating);
@@ -36,8 +42,13 @@ public class Movie implements Comparable<Movie> {
     }
 
     @Override
-    public int compareTo(Movie obj) {
-        System.out.println(this.getYear() + " - " + obj.getYear() + " = " + (this.getYear() - obj.getYear()));
-        return this.getYear() - obj.getYear();
+    public int compare(Serie s1, Serie s2) {
+
+        if (s1.getYear() == s2.getYear()) {
+            return s1.getRating() > s2.getRating() ? 1 : -1;
+        } else {
+            return s1.getYear() - s2.getYear();
+        }
+
     }
 }
